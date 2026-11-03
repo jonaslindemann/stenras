@@ -106,7 +106,7 @@ class Game extends Map {
         
         // Initiera ljudssystemet
         
-        minim = new Minim(dd_part3.this);        
+        minim = new Minim(stenras_losning_del3.this);        
         
         // Läs in ljudfiler
         

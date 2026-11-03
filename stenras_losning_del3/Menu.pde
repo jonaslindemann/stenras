@@ -19,7 +19,7 @@ class Menu
     
     public Menu()
     {
-        title = "Dangerous Dave";
+        title = "Stenras!";
         
         menuItems = new StringList();
         
@@ -34,19 +34,19 @@ class Menu
         //backgroundImage.filter(BLUR, 6);
         
         /*
-        minim = new Minim(dangerous_dave.this);
+        minim = new Minim(stenras_losning_del3.this);
         music = minim.loadFile("05_Come_and_Find_Me.mp3");
         */
         
         keyWasReleased = true;
     }
     
-    public void add(String text)
+    public void addMenuItem(String text)
     {
         menuItems.append(text);    
     }
     
-    public void changeItem(int idx, String text)
+    public void changeMenuItem(int idx, String text)
     {
         menuItems.set(idx, text);
     }

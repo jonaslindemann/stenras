@@ -55,7 +55,7 @@ class Game {
         
         // Initiera ljudsystem
         
-        minim = new Minim(dangerous_dave.this);
+        minim = new Minim(stenras.this);
         
         // Läs in ljud
         

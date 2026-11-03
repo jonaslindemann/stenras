@@ -1,6 +1,14 @@
-# Dangerous Dave - Del 2
+# Del 2 – Spelaren
 
-I denna del skall vi lägga till funktioner för att flytta vår hjälte i labyrinten. Om ni inte hunnit med kan ni ladda ner en mall för vad vi gjorde förra gången på hemsidan.
+I denna del skall vi lägga till funktioner för att flytta vår hjälte i labyrinten. Om ni inte hunnit med kan ni ladda ner en mall för vad vi gjorde förra gången.
+
+!!! info "Ladda ner mallen"
+
+    Till denna del använder du mallen **stenras_mall_del2.zip**.
+
+    [:material-download: Ladda ner stenras_mall_del2.zip](downloads/stenras_mall_del2.zip){ .md-button .md-button--primary }
+
+    Se [Ladda ner kod](nedladdning.md) för hur du öppnar mallen i Processing.
 
 För att hålla koll på var vår hjälte befinner sig lägger vi till 2 variabler i klassen Cave, playerRow, playerCol. 
 
@@ -23,7 +31,7 @@ class Cave extends Map {
 
 För att kunna rita ut vår hjälte behöver vi också ladda in en bild för honom. För detta skall vi använda en s.k. tilemap. Detta är en bild som består av många varianter av vår spelare. Tilemap:en vi skall använda här finns i bilden **player.png** i data-mappen i spelet och ser ut så här:
 
-![Alt text](dd_part2/data/player.png)
+![Tilemap för spelaren](images/player_tiles.png)
 
 Vi börjar enkelt genom att läsa in bilden och kopiera översta bilden till en ny bildvariabel. Följande kod i **Cave()** gör detta:
 
@@ -54,26 +62,28 @@ void placePlayer()
 }  
 ```       
 
-**Tänk på**: När man lägger till funktioner till vår **Cave**-klass är det viktigt att dessa hamnar mellan klassens "{" "}" precis som i följande exempel:
+!!! warning "Tänk på"
 
-```java
-class Cave extends Map {
+    När man lägger till funktioner till vår **Cave**-klass är det viktigt att dessa hamnar mellan klassens "{" "}" precis som i följande exempel:
 
-    ...
+    ```java
+    class Cave extends Map {
 
-    void placePlayer()
-    {
-        playerRow = int(random(nRows-2))+1;    
-        playerCol = int(random(nCols-2))+1;
-                
-        map[playerRow][playerCol] = PLAYER;
-        centerViewPort(playerRow, playerCol);
-    }  
+        ...
 
-    ...
+        void placePlayer()
+        {
+            playerRow = int(random(nRows-2))+1;    
+            playerCol = int(random(nCols-2))+1;
 
-} 
-```
+            map[playerRow][playerCol] = PLAYER;
+            centerViewPort(playerRow, playerCol);
+        }  
+
+        ...
+
+    } 
+    ```
 
 För att spelare skall synas i grottan måste vi anropa funktionen från vårt huvudprogram:
 
@@ -107,11 +117,11 @@ void drawCell(int cellType, int x, int y)
 }
 ```
 
-# Uppgift 1 
+!!! example "Uppgift 1"
 
-Lägg till kod för att rita upp spelaren i **drawCell(...)**. Titta på hur koden för resten av blocken är konstruerad.
+    Lägg till kod för att rita upp spelaren i **drawCell(...)**. Titta på hur koden för resten av blocken är konstruerad.
 
-# Förflytta spelaren
+## Förflytta spelaren
 
 Vi skall nu skriva en funktion som flyttar vår spelare i grottan. I funktionen måste vi tänka på att man inte kan gå igenom stenblock eller väggar. Funktionen kallar vi **movePlayer(...)** och lägger i **Cave**-klassen:
 
@@ -159,25 +169,27 @@ void draw()
 
 Vad händer när man kör programmet? Längst ner i fönstret visas olika siffror beroende på vilken tangent som trycks ner:
 
-    37
-    37
-    37
-    39
-    39
-    39
-    39
-    39
-    39
-    39
-    39
-    39
-    39
-    39
-    40
-    40
-    40
-    40
-    40
+```text
+37
+37
+37
+39
+39
+39
+39
+39
+39
+39
+39
+39
+39
+39
+40
+40
+40
+40
+40
+```
 
 Problemet är att det går för fort. Hade vi flyttat spelare så fort som dessa siffror visas hade det varit svårt att styra vår spelare. Vi måste fixa detta på något sätt. Vi skapar en speciell variabel, **keyWasReleased**, för att hålla reda på om en tangent inte längre trycks ner. Vad händer i följande kod:
 
@@ -247,6 +259,6 @@ void draw()
 
 Vad händer? 
 
-# Uppgift 2
+!!! example "Uppgift 2"
 
-Lägg till övriga anrop för att flytta vår hjälte! Övriga piltangenter är, **DOWN**, **LEFT**, **RIGHT**.
+    Lägg till övriga anrop för att flytta vår hjälte! Övriga piltangenter är, **DOWN**, **LEFT**, **RIGHT**.

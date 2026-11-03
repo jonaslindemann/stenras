@@ -1,6 +1,14 @@
-# Dangerous Dave - Del 3
+# Del 3 – Menyer och poäng
 
 I denna del skall vi lägga till menyer, trillande stenar och poängräkning.
+
+!!! info "Ladda ner mallen"
+
+    Till denna del använder du mallen **stenras_mall_del3.zip**.
+
+    [:material-download: Ladda ner stenras_mall_del3.zip](downloads/stenras_mall_del3.zip){ .md-button .md-button--primary }
+
+    Se [Ladda ner kod](nedladdning.md) för hur du öppnar mallen i Processing.
 
 ## Spellägen
 
@@ -77,7 +85,9 @@ Menyerna i spelet läggs till genom att anropa metoden add(...) på menu-objekte
     menu.add("Starta");
 ```
 
-### Uppgift 1 - Lägg till menyn "Avsluta".
+!!! example "Uppgift 1"
+
+    Lägg till menyn "Avsluta".
 
 I nästa steg skall vi dela upp **draw()** metoden i delar som motsvara våra spellägen. Vi börjar med att lägga till meny-läget:
 
@@ -174,7 +184,9 @@ I spelmenyer brukar man kunna ändra alternativ för spelet, starta spelet och a
     }
 ```
  
-### Uppgift 2 - Lägg till en if-sats för alternativet avsluta
+!!! example "Uppgift 2"
+
+    Lägg till en if-sats för alternativet avsluta.
 
 ## Poängräkning och tidtagning 
 
@@ -228,7 +240,7 @@ if (menu.selected()==0)
 
 ## Utskrift av poängen och tid
 
-För att visa spelets status skall vi använda ett speciellt objekt **Text**. Vi deklarerar detta objekt i vårt huvudprogram i dd_part3:
+För att visa spelets status skall vi använda ett speciellt objekt **Text**. Vi deklarerar detta objekt i vårt huvudprogram:
 
 ```java
 // Vår spelklass
@@ -488,8 +500,6 @@ void draw()
 }
 ```
 
-### Uppgift: Experimentera med moveBoulders
+!!! example "Uppgift 3 – Experimentera med moveBoulders"
 
-Ändra hastigheten på blocken genom att ändra **game.boulderMoveRate** till 5, 10 och 20. Vad händer? Kan man använda detta för att göra spelet svårare? Isåfall hur? På vilka fler sätt kan man göra spelet svårare?
-
-
+    Ändra hastigheten på blocken genom att ändra **game.boulderMoveRate** till 5, 10 och 20. Vad händer? Kan man använda detta för att göra spelet svårare? Isåfall hur? På vilka fler sätt kan man göra spelet svårare?

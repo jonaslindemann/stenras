@@ -14,31 +14,21 @@ class Menu
     String title;
     StringList menuItems;
     int selectedMenu;
-    boolean keyWasReleased;
-    int chosenMenuItem;
     
     public Menu()
     {
-        title = "Dangerous Dave";
+        title = "Stenras!";
         
         menuItems = new StringList();
         
         selectedMenu = 0;
-        chosenMenuItem = -1;
         
         menuFont = createFont("Bangers.ttf",100,true);
+        backgroundImage = loadImage("menu.png");
+        backgroundImage.filter(BLUR, 6);
         
-        backgroundImage = null;
-        
-        //backgroundImage = loadImage("menu.png");
-        //backgroundImage.filter(BLUR, 6);
-        
-        /*
-        minim = new Minim(dangerous_dave.this);
+        minim = new Minim(stenras.this);
         music = minim.loadFile("05_Come_and_Find_Me.mp3");
-        */
-        
-        keyWasReleased = true;
     }
     
     public void addMenuItem(String text)
@@ -77,65 +67,15 @@ class Menu
     {
         
     }
-    
-    public int selected()
-    {
-        return chosenMenuItem;    
-    }
-    
-    public boolean isSelected()
-    {
-        return (chosenMenuItem != -1);    
-    }
-    
-    public void reset()
-    {
-        chosenMenuItem = -1;    
-    }
 
     public void stopMusic()
     {
         music.pause();    
     }
-    
-    public void checkKeys()
-    {
-        if (keyPressed)
-        {
-            // Vänta tills dess att spelaren släpper tangenten innan 
-            // vi går vidare.
-            
-            if (keyWasReleased)
-            {
-                // Sätt flaggan att tangenten fortfarande är nedtryckt.
-                
-                keyWasReleased = false;
-                    
-                switch(keyCode) 
-                {
-                    case UP:
-                        moveUp();
-                        break;                    
-                    case DOWN:
-                        moveDown();
-                        break;
-                    case RETURN:
-                    case ENTER:
-                        chosenMenuItem = selectedMenu;
-                        break;
-                        
-                }
-            }
-        }
-        else
-            keyWasReleased = true;
-    }
    
     public void draw()
     {
-        if (backgroundImage!=null)
-            image(backgroundImage, 0, 0, width, height);
-            
+        image(backgroundImage, 0, 0, width, height);
         textFont(menuFont);
         textAlign(CENTER, TOP);
         
