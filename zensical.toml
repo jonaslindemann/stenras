@@ -2,6 +2,7 @@
 site_name = "Stenras!"
 site_description = "Programmera ett eget grottspel i Processing"
 site_author = "Jonas Lindemann"
+site_url = "https://jonaslindemann.github.io/stenras/"
 copyright = """
 Copyright &copy; 2024–2026 Jonas Lindemann
 """
