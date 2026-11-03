@@ -18,9 +18,12 @@ SKETCHES = [
     "stenras_mall_del1",
     "stenras_mall_del2",
     "stenras_mall_del3",
+    "stenras_mall_del4",
     "stenras_losning_del1",
     "stenras_losning_del2",
     "stenras_losning_del3",
+    "stenras_losning_del4",
+    "stenras_utmaningar_del4",
 ]
 
 IGNORE = {".DS_Store", "Thumbs.db"}

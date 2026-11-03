@@ -11,6 +11,7 @@ Mallen innehåller den kod och de bilder/ljud du behöver för att komma igång 
 | [Del 1 – Grottan](del1.md) | [:material-download: stenras_mall_del1.zip](downloads/stenras_mall_del1.zip){ .md-button } |
 | [Del 2 – Spelaren](del2.md) | [:material-download: stenras_mall_del2.zip](downloads/stenras_mall_del2.zip){ .md-button } |
 | [Del 3 – Menyer och poäng](del3.md) | [:material-download: stenras_mall_del3.zip](downloads/stenras_mall_del3.zip){ .md-button } |
+| [Del 4 – Fallande stenar](del4.md) | [:material-download: stenras_mall_del4.zip](downloads/stenras_mall_del4.zip){ .md-button } |
 
 ## Lösningsförslag
 
@@ -21,6 +22,15 @@ Har du inte hunnit klart med en del kan du ladda ner lösningen och fortsätta d
 | [Del 1 – Grottan](del1.md) | [:material-download: stenras_losning_del1.zip](downloads/stenras_losning_del1.zip){ .md-button } |
 | [Del 2 – Spelaren](del2.md) | [:material-download: stenras_losning_del2.zip](downloads/stenras_losning_del2.zip){ .md-button } |
 | [Del 3 – Menyer och poäng](del3.md) | [:material-download: stenras_losning_del3.zip](downloads/stenras_losning_del3.zip){ .md-button } |
+| [Del 4 – Fallande stenar](del4.md) | [:material-download: stenras_losning_del4.zip](downloads/stenras_losning_del4.zip){ .md-button } |
+
+## Utmaningar
+
+Lösningsförslag till utmaningarna i slutet av en del.
+
+| Del | Utmaningar |
+|-----|------------|
+| [Del 4 – Fallande stenar](del4.md#utmaningar) | [:material-download: stenras_utmaningar_del4.zip](downloads/stenras_utmaningar_del4.zip){ .md-button } |
 
 ## Så här öppnar du koden i Processing
 

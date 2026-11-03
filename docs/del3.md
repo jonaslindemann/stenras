@@ -503,3 +503,7 @@ void draw()
 !!! example "Uppgift 3 – Experimentera med moveBoulders"
 
     Ändra hastigheten på blocken genom att ändra **game.boulderMoveRate** till 5, 10 och 20. Vad händer? Kan man använda detta för att göra spelet svårare? Isåfall hur? På vilka fler sätt kan man göra spelet svårare?
+
+!!! tip "Hur fungerar moveBoulders()?"
+
+    I [Del 4 – Fallande stenar](del4.md) skriver vi **moveBoulders()** själva från grunden och går igenom varför den fungerar som den gör.

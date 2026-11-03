@@ -23,9 +23,9 @@ void setup()
     lastMode = START;
     
     menu = new Menu();
-    menu.addMenuItem("Start Game");
-    menu.addMenuItem("Difficulty : NORMAL");
-    menu.addMenuItem("Sound : ON");
+    menu.addMenuItem("Starta spel");
+    menu.addMenuItem("Svårihet : Normal");
+    menu.addMenuItem("Ljud : På");
     menu.addMenuItem("Exit");
       
     keyWasReleased = true;

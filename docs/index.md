@@ -10,7 +10,8 @@ Välkommen till **Stenras!** – en serie där vi steg för steg bygger ett eget
 |-----|----------|
 | [Del 1 – Grottan](del1.md) | Rutnätet, bilder och slumpmässigt genererade grottor |
 | [Del 2 – Spelaren](del2.md) | Placera ut och styra vår hjälte med piltangenterna |
-| [Del 3 – Menyer och poäng](del3.md) | Spellägen, meny, poängräkning, tidtagning och rullande stenar |
+| [Del 3 – Menyer och poäng](del3.md) | Spellägen, meny, poängräkning och tidtagning |
+| [Del 4 – Fallande stenar](del4.md) | Vi skriver fysiken för fallande och rullande stenar själva |
 
 ## Vad du behöver
 

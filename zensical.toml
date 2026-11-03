@@ -12,6 +12,7 @@ nav = [
     { "Del 1 – Grottan" = "del1.md" },
     { "Del 2 – Spelaren" = "del2.md" },
     { "Del 3 – Menyer och poäng" = "del3.md" },
+    { "Del 4 – Fallande stenar" = "del4.md" },
     { "Ladda ner kod" = "nedladdning.md" },
 ]
 

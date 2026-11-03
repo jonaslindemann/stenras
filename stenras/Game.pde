@@ -16,6 +16,12 @@ class Game {
     boolean isOver;
     boolean isFinished;
     
+    // Håller reda på vilka stenar som är på väg nedåt och vilka
+    // celler som redan har flyttats i nuvarande uppdatering.
+    
+    boolean[][] falling;
+    boolean[][] moved;
+    
     int playerFrame;
     int playerAnim;
     int playerAnimCycle;
@@ -53,13 +59,16 @@ class Game {
         isOver = false;
         isFinished = false;
         
+        falling = new boolean[map.nRows][map.nCols];
+        moved = new boolean[map.nRows][map.nCols];
+        
         // Initiera ljudsystem
         
         minim = new Minim(stenras.this);
         
         // Läs in ljud
         
-        boulderSound = minim.loadSample("boulder.aif");
+        boulderSound = minim.loadSample("boulder.wav");
         footstepSound = minim.loadSample("footstep.wav");
         gameOverSound = minim.loadSample("gameover.wav");
         diamondSound = minim.loadSample("diamond.wav");
@@ -234,6 +243,85 @@ class Game {
         movePlayer(1,0);
     }
 
+    boolean isRound(int cellType)
+    {
+        // Stenar kan rulla av saker som är runda, dvs andra stenar
+        // och diamanter.
+        
+        return (cellType == BOULDER) || (cellType == DIAMOND);
+    }
+    
+    void moveBoulder(int fromRow, int fromCol, int toRow, int toCol)
+    {
+        // Flyttar en sten från en cell till en annan och kommer ihåg
+        // att stenen redan har flyttats i denna uppdatering.
+        
+        map.setCell(fromRow, fromCol, EMPTY);
+        map.setCell(toRow, toCol, BOULDER);
+        
+        falling[fromRow][fromCol] = false;
+        moved[toRow][toCol] = true;
+    }
+    
+    void updateBoulder(int row, int col)
+    {
+        // Regel 1 - Tomt under stenen. Stenen faller ett steg.
+        
+        // ###     ###
+        // #o#  -> #.#
+        // #.#     #o#
+        
+        if (map.cell(row+1, col) == EMPTY)
+        {
+            moveBoulder(row, col, row+1, col);
+            falling[row+1][col] = true;
+            
+            // Slår stenen i något spelar vi ljud direkt. Träffas 
+            // spelaren tar regel 2 hand om det.
+            
+            if ((map.cell(row+2, col) != EMPTY) && (map.cell(row+2, col) != PLAYER))
+                boulderSound.trigger();
+                
+            return;
+        }
+        
+        // Regel 2 - En fallande sten träffar spelaren. Spelet är slut.
+        
+        if ((map.cell(row+1, col) == PLAYER) && (falling[row][col]))
+        {
+            gameOverSound.trigger();
+            isOver = true;
+            music.pause();
+            return;
+        }
+        
+        // Regel 3 - Stenen ligger på något runt. Den rullar åt sidan
+        // om det är tomt både bredvid och snett nedanför.
+        
+        // ...     ...
+        // .o.  -> o..
+        // .o.     .o.
+        
+        if (isRound(map.cell(row+1, col)))
+        {
+            if ((map.cell(row, col-1) == EMPTY) && (map.cell(row+1, col-1) == EMPTY))
+            {
+                moveBoulder(row, col, row, col-1);
+                return;
+            }
+            
+            if ((map.cell(row, col+1) == EMPTY) && (map.cell(row+1, col+1) == EMPTY))
+            {
+                moveBoulder(row, col, row, col+1);
+                return;
+            }
+        }
+        
+        // Regel 4 - Stenen ligger still.
+        
+        falling[row][col] = false;
+    }
+
     void moveBoulders()
     {
         if (isOver)
@@ -242,54 +330,23 @@ class Game {
         if (isFinished)
             return;
             
-        if (frameCount % boulderMoveRate == 0)
-        {
-            for (int row = map.nRows-2; row>=0; row--)
-                for(int col = 0; col<map.nCols; col++)
-                {
-                    if (map.cell(row,col) == BOULDER)
-                    {
-                        if (map.cell(row+1,col) == EMPTY)
-                        {
-                            map.setCell(row,col, EMPTY);
-                            map.setCell(row+1,col, BOULDER);
-                            
-                            if (map.cell(row+2,col) == PLAYER)
-                            {
-                                gameOverSound.trigger();
-                                isOver = true;
-                                music.pause();
-                            }
-                            
-                            if (map.cell(row+2,col) != EMPTY)
-                                boulderSound.trigger();
-                        }
-                    }
-                
-                // ...
-                // .O.
-                // .O.
-                //
-                if (map.cell(row, col) == BOULDER)
-                {
-                    if (map.cell(row+1,col) == BOULDER)
-                    {
-                        if ((col!=0)&&(col<map.nCols-1))
-                        {
-                            if ((map.cell(row+1,col-1) == EMPTY)&&(map.cell(row,col-1) == EMPTY))
-                            {
-                                map.setCell(row, col, EMPTY);
-                                map.setCell(row, col-1, BOULDER);
-                            } else if ((map.cell(row+1, col+1) == EMPTY)&&(map.cell(row,col+1) == EMPTY))
-                            {
-                                map.setCell(row, col, EMPTY);
-                                map.setCell(row, col+1, BOULDER);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        // Stenarna flyttas bara var boulderMoveRate:e bildruta.
+            
+        if (frameCount % boulderMoveRate != 0)
+            return;
+            
+        // Nollställ vilka stenar som har flyttats.
+        
+        moved = new boolean[map.nRows][map.nCols];
+        
+        // Gå igenom grottan nerifrån och upp. Annars skulle en sten
+        // som flyttats ett steg ned hittas igen på nästa rad och falla
+        // hela vägen till botten på en gång. Ytterkanterna är alltid
+        // väggar så dem behöver vi inte titta på.
+        
+        for (int row = map.nRows-2; row >= 1; row--)
+            for (int col = 1; col < map.nCols-1; col++)
+                if ((map.cell(row, col) == BOULDER) && (!moved[row][col]))
+                    updateBoulder(row, col);
     }    
 }    
-    
